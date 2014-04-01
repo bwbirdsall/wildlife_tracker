@@ -3,6 +3,16 @@
 <% @sightings.each do |sighting| %>
   <li><%= sighting.species.name %>: <%= sighting.name %>, <%= sighting.location %> in the <%= sighting.region.name %> region, <%= sighting.datetime.strftime("at %T on %F") %> | <a href="/sightings/<%= sighting.id %>/edit"> Edit </a> | <a href="/sightings/<%= sighting.id %>" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a></li>
 <% end %>
+<p><br>Refine list to a specific time period:
+<form action="/sightings/list-all" method="get">
+  <label for="sightings_start_date">Start date</label>
+  <input id="sightings_start_date" name="sightings[start_date]" type="datetime-local">
+  <label for="sightings_end_date">End date</label>
+  <input id="sightings_end_date" name="sightings[end_date]" type="datetime-local">
+  <button>Run report</button>
+</form></p>
 
 <p><a href="/sightings">Return to Main Page</a></p>
+
+
 

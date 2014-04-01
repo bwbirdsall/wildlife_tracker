@@ -14,4 +14,13 @@ class Sighting < ActiveRecord::Base
   def self.list_region_sightings(region_id)
     sightings = Sighting.where(:region_id => region_id)
   end
+
+  def self.between(dates)
+    if dates.nil? || dates[:start_date].nil? || dates[:end_date].nil? || dates[:start_date] == "" || dates[:end_date] == ""
+      sightings = Sighting.all
+    else
+      sightings = Sighting.where(datetime: dates[:start_date]..dates[:end_date])
+    end
+    sightings
+  end
 end

@@ -15,7 +15,7 @@ class SightingsController < ApplicationController
   end
 
   def list_all
-    @sightings = Sighting.all
+    @sightings = Sighting.between(params[:sightings])
     render('sightings/list.html.erb')
   end
 
