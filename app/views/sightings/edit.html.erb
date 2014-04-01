@@ -1,33 +1,35 @@
-<h1>Edit Sighting</h1>
+<div class="container">
+  <h1>Edit Sighting</h1>
 
-<% if @sighting.errors.any? %>
-  <h3>Please Fix These Errors</h3>
-  <ul>
-    <% @sighting.errors.full_messages.each do |message| %>
-      <li><%= message %>
-    <% end %>
-  </ul>
-<% end %>
+  <% if @sighting.errors.any? %>
+    <h3>Please Fix These Errors</h3>
+    <ul>
+      <% @sighting.errors.full_messages.each do |message| %>
+        <li><%= message %>
+      <% end %>
+    </ul>
+  <% end %>
 
-<form action="/sightings/<%= @sighting.id %>" method="post">
-  <input name="_method" type="hidden" value="patch">
-  <label for="sighting_name">Sighter's Name:</label>
-  <input id="sighting_name" name="sighting[name]" type="text" value="<%= @sighting.name %>">
-  <br><label for="sighting_species">Species Seen:</label>
-  <select name="sighting[species_id]">
-    <% Species.all.each do |species| %>
-      <option value="<%= species.id %>"><%= species.name %></option>
-    <% end %>
-  </select>
-  <br><label for="sighting_location">Location Seen:</label>
-  <input id="sighting_location" name="sighting[location]" type="text" value="<%= @sighting.location %>">
-  <br><label for="sighting_region">Region that location is in:</label>
-  <select name="sighting[region_id]">
-    <% Region.all.each do |region| %>
-      <option value="<%= region.id %>"><%= region.name %></option>
-    <% end %>
-  </select>
-  <br><label for="sighting_datetime">Time and Date of Sighting:</label>
-  <input id="sighting_datetime" name="sighting[datetime]" type="datetime-local" value=<%= @sighting.datetime.strftime("%FT%T") %>>
-  <br><button>Edit Sighting</button>
-</form>
+  <form action="/sightings/<%= @sighting.id %>" method="post">
+    <input name="_method" type="hidden" value="patch">
+    <label for="sighting_name">Sighter's Name:</label>
+    <input id="sighting_name" name="sighting[name]" type="text" value="<%= @sighting.name %>">
+    <br><label for="sighting_species">Species Seen:</label>
+    <select name="sighting[species_id]">
+      <% Species.all.each do |species| %>
+        <option value="<%= species.id %>"><%= species.name %></option>
+      <% end %>
+    </select>
+    <br><label for="sighting_location">Location Seen:</label>
+    <input id="sighting_location" name="sighting[location]" type="text" value="<%= @sighting.location %>">
+    <br><label for="sighting_region">Region that location is in:</label>
+    <select name="sighting[region_id]">
+      <% Region.all.each do |region| %>
+        <option value="<%= region.id %>"><%= region.name %></option>
+      <% end %>
+    </select>
+    <br><label for="sighting_datetime">Time and Date of Sighting:</label>
+    <input id="sighting_datetime" name="sighting[datetime]" type="datetime-local" value=<%= @sighting.datetime.strftime("%FT%T") %>>
+    <br><button>Edit Sighting</button>
+  </form>
+</div>

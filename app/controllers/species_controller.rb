@@ -6,7 +6,6 @@ class SpeciesController < ApplicationController
 
   def show
     @species = Species.find(params[:id])
-    @sightings = Sighting.list_species_sightings(@species.id)
     render('species/show.html.erb')
   end
 

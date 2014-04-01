@@ -1,7 +1,12 @@
 class SightingsController < ApplicationController
   def index
-    @sighting = Sighting.new
+    @sightings = Sighting.between(params[:sightings])
     render('sightings/index.html.erb')
+  end
+
+  def new
+    @sighting = Sighting.new
+    render('sightings/new.html.erb')
   end
 
   def create
@@ -10,13 +15,8 @@ class SightingsController < ApplicationController
     if @sighting.save
       render('sightings/success.html.erb')
     else
-      render('sightings/index.html.erb')
+      render('sightings/new.html.erb')
     end
-  end
-
-  def list_all
-    @sightings = Sighting.between(params[:sightings])
-    render('sightings/list.html.erb')
   end
 
   def edit
@@ -35,7 +35,7 @@ class SightingsController < ApplicationController
     @sighting.update(params[:sighting])
 
     if @sighting.save
-      redirect_to action: :list_all
+      redirect_to action: :index
     else
       render('sightings/edit.html.erb')
     end

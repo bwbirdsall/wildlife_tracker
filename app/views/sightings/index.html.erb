@@ -1,36 +1,17 @@
-<h1>Add a New Sighting</h1>
+<div class="container">
+  <h1>All Sightings</h1>
 
-<% if @sighting.errors.any? %>
-  <h3>Please Fix These Errors</h3>
-  <ul>
-    <% @sighting.errors.full_messages.each do |message| %>
-      <li><%= message %>
-    <% end %>
-  </ul>
-<% end %>
+  <% @sightings.each do |sighting| %>
+    <li><%= sighting.species.name %>: <%= sighting.name %>, <%= sighting.location %> in the <%= sighting.region.name %> region, <%= sighting.datetime.strftime("at %T on %F") %> | <a href="/sightings/<%= sighting.id %>/edit"> Edit </a> | <a href="/sightings/<%= sighting.id %>" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a></li>
+  <% end %>
+  <p><br>Refine list to a specific time period:
+  <form action="/sightings/index" method="get">
+    <label for="sightings_start_date">Start date</label>
+    <input id="sightings_start_date" name="sightings[start_date]" type="datetime-local">
+    <label for="sightings_end_date">End date</label>
+    <input id="sightings_end_date" name="sightings[end_date]" type="datetime-local">
+    <button>Run report</button>
+  </form></p>
 
-<form action="/sightings" method="post">
-  <label for="sighting_name">Your Name</label>
-  <input id="sighting_name" name="sighting[name]" type="text" value="<%= @sighting.name %>">
-  <br><label for="sighting_species">Species You Saw</label>
-  <select name="sighting[species_id]">
-    <% Species.all.each do |species| %>
-      <option value="<%= species.id %>"><%= species.name %></option>
-    <% end %>
-  </select>
-  <br><label for="sighting_location">Where did you see it?</label>
-  <input id="sighting_location" name="sighting[location]" type="text" value="<%= @sighting.location %>">
-  <br><label for="sighting_region">Region that location is in:</label>
-  <select name="sighting[region_id]">
-    <% Region.all.each do |region| %>
-      <option value="<%= region.id %>"><%= region.name %></option>
-    <% end %>
-  </select>
-  <br><label for="sighting_datetime">At what time did you see it?</label>
-  <input id="sighting_datetime" name="sighting[datetime]" type="datetime-local" value="<%= @sighting.datetime %>">
-  <br><button>Create Sighting</button>
-</form>
-
-<p><a href="/sightings/list-all">See all sightings</a></p>
-<p><a href="/species/">Move to Species Menu</a></p>
-<p><a href="/regions/">Move to Regions Menu</a></p>
+  <p><a href="/sightings">Return to Main Page</a></p>
+</div>

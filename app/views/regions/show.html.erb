@@ -1,8 +1,9 @@
-<h1><%= @region.name %></h1>
+<div class="container">
+  <h1><%= @region.name %></h1>
 
-<% @sightings.each do |sighting| %>
-  <li><%= sighting.species.name %>: <%= sighting.name %>, <%= sighting.location %>, <%= sighting.datetime.strftime("at %T on %F") %> | <a href="/sightings/<%= sighting.id %>/edit"> Edit </a> | <a href="/sightings/<%= sighting.id %>" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a></li>
-<% end %>
+  <% @region.sightings.each do |sighting| %>
+    <li><%= sighting.species.name %>: <%= sighting.name %>, <%= sighting.location %>, <%= sighting.datetime.strftime("at %T on %F") %> | <a href="/sightings/<%= sighting.id %>/edit"> Edit </a> | <a href="/sightings/<%= sighting.id %>" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a></li>
+  <% end %>
 
-<p><a href="/regions">Return to Main Page</a></p>
-
+  <p><a href="/regions">Return to Main Page</a></p>
+</div>

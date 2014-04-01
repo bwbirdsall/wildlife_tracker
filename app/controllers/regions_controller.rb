@@ -6,7 +6,6 @@ class RegionsController < ApplicationController
 
   def show
     @region = Region.find(params[:id])
-    @sightings = Sighting.list_region_sightings(@region.id)
     render('regions/show.html.erb')
   end
 

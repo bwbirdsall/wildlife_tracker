@@ -1,12 +1,15 @@
-<h1>Regions</h1>
+<div class="container">
+  <p>
+    <h1>Regions</h1>
+    <ul>
+      <% @regions.each do |region| %>
+        <li><a href="/regions/<%= region.id %>"><%= region.name %></a> | <a href="/regions/<%= region.id %>/edit">Edit</a>
+          | <a href="/regions/<%= region.id %>" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a></li>
+      <% end %>
+    </ul>
+  </p>
 
-<ul>
-  <% @regions.each do |region| %>
-    <li><a href="/regions/<%= region.id %>"><%= region.name %></a> | <a href="/regions/<%= region.id %>/edit">Edit</a>
-      | <a href="/regions/<%= region.id %>" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a></li>
-  <% end %>
-</ul>
-
-<p><a href="/regions/new">Add a New Region</a></p>
-<p><a href="/sightings/">Move to Sightings Menu</a></p>
-<p><a href="/species/">Move to the Species Menu</a></p>
+  <p><a href="/regions/new">Add a New Region</a></p>
+  <p><a href="/sightings/">Move to Sightings Menu</a></p>
+  <p><a href="/species/">Move to the Species Menu</a></p>
+</div>
