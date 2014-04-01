@@ -1,0 +1,8 @@
+<h1>All Sightings</h1>
+
+<% @sightings.each do |sighting| %>
+  <li><%= sighting.species.name %>: <%= sighting.name %>, <%= sighting.location %> in the <%= sighting.region.name %> region, <%= sighting.datetime.strftime("at %T on %F") %> | <a href="/sightings/<%= sighting.id %>/edit"> Edit </a> | <a href="/sightings/<%= sighting.id %>" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a></li>
+<% end %>
+
+<p><a href="/sightings">Return to Main Page</a></p>
+

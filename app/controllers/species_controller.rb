@@ -4,6 +4,12 @@ class SpeciesController < ApplicationController
     render('species/index.html.erb')
   end
 
+  def show
+    @species = Species.find(params[:id])
+    @sightings = Sighting.list_species_sightings(@species.id)
+    render('species/show.html.erb')
+  end
+
   def new
     @species = Species.new
     render('species/new.html.erb')
@@ -13,7 +19,7 @@ class SpeciesController < ApplicationController
     @species = Species.new(params[:species])
 
     if @species.save
-      redirect_to action: :index
+      redirect_to species_path
     else
       render('species/new.html.erb')
     end
@@ -27,7 +33,7 @@ class SpeciesController < ApplicationController
   def destroy
     @species = Species.find(params[:id])
     @species.destroy
-    redirect_to action: :index
+    redirect_to species_path
   end
 
   def update
@@ -35,7 +41,7 @@ class SpeciesController < ApplicationController
     @species.update(params[:species])
 
     if @species.save
-      redirect_to action: :index
+      redirect_to species_path
     else
       render('species/edit.html.erb')
     end
