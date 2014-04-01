@@ -1,0 +1,10 @@
+<h1>Species</h1>
+
+<ul>
+  <% @species_all.each do |species| %>
+    <li><%= species.name %>  | <a href="/species/<%= species.id %>/edit">Edit</a>
+      | <a href="/species/<%= species.id %>" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a></li>
+  <% end %>
+</ul>
+
+<p><a href="/species/new">Add a New Species</a></p>
